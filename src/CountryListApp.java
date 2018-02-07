@@ -1,3 +1,8 @@
+/*
+ * Nicholas Soule
+ * Lab15 - CountryListApp
+ */
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,20 +23,26 @@ public class CountryListApp {
 		String dirString = "countries";
 		String fileString = "countrylist.txt";
 		String userCountry;
+		// creates directory and string
 		createDirectory(dirString);
 		createFile(dirString, fileString);
 
+		// program starts
 		System.out.println("Welcome to the Countries Maintenance Application!");
 		System.out.println("1 - See the list of countries");
 		System.out.println("2 - Add a country");
 		System.out.println("3 - Exit");
-
+		
+		// do while loop gets user input and loops while they choose 1 or 2
 		do {
+			// validator ensures the user only enters a number 1-3
 			userNum = Validator.getInt(scan, "Enter a menu number: ", 1, 3);
+			// reads/prints out the country list
 			if (userNum == 1) {
 				readFromFile(dirString, fileString);
 
 			}
+			// adds a new country to the list
 			if (userNum == 2) {
 				System.out.println("Please enter a new country: ");
 				userCountry = scan.next();
@@ -39,12 +50,12 @@ public class CountryListApp {
 
 			}
 		} while (userNum == 1 || userNum == 2);
-
+		// ends program
 		System.out.println("Goodbye!");
 
 		scan.close();
 	}
-
+	// creates directory
 	public static void createDirectory(String dirString) {
 		Path dirPath = Paths.get(dirString);
 		System.out.println(dirPath.toAbsolutePath());
@@ -60,7 +71,7 @@ public class CountryListApp {
 			}
 		}
 	}
-
+	// creates file
 	public static void createFile(String dirString, String fileString) {
 
 		Path filePath = Paths.get(dirString, fileString);
@@ -76,7 +87,7 @@ public class CountryListApp {
 		}
 
 	}
-
+	// writes to file
 	public static void writeToFile(String dirString, String fileString, String userCountry) {
 
 		Path writeFile = Paths.get(dirString, fileString);
@@ -95,7 +106,7 @@ public class CountryListApp {
 		}
 
 	}
-
+	// reads/prints from file
 	public static void readFromFile(String dirString, String filePath) {
 		Path readFile = Paths.get(dirString, filePath);
 
